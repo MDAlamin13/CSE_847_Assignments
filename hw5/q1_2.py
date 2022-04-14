@@ -1,6 +1,7 @@
 import numpy as np
 import random
 from matplotlib import pyplot as plt
+from sklearn.cluster import SpectralClustering
 np.random.seed(7)
 
 def find_best_centroid(point,centroids):
@@ -65,8 +66,10 @@ def plot(assignments):
 
     colors=['r','b','y']
     for i in range(len(sections)):
-
-        plt.scatter(sections[i][0],sections[i][1],c=colors[i])
+        lab='cluster '+str(i+1)
+        plt.scatter(sections[i][0],sections[i][1],c=colors[i],label=lab)
+    
+    plt.legend()
     plt.savefig('q1_kmean.png')
     plt.show()        
 
@@ -74,3 +77,13 @@ def plot(assignments):
 X=np.random.randint(30, size=(100,2))
 assignments=kmeans(X,3,100)
 plot(assignments)
+
+sc=SpectralClustering(n_clusters=3).fit(X)
+SpectralClustering(affinity='rbf', assign_labels='kmeans', coef0=1, degree=3,
+                   eigen_solver=None, eigen_tol=0.0, gamma=1.0,
+                   kernel_params=None, n_clusters=3, n_components=None,
+                   n_init=10, n_jobs=None, n_neighbors=10, random_state=None)
+labels = sc.labels_
+plt.scatter(X[:,0], X[:,1], c=labels)
+plt.savefig('q1_spectral.png')
+plt.show()
