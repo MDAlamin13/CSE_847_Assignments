@@ -41,9 +41,11 @@ for p in P:
     img2=transformed_X[1].reshape(16,16)
 
     plt.imshow(img1,cmap='gray')
+    plt.title('Reconstructed Image 1')
     plt.savefig('image1_%s.png'%p)
     plt.show()
     plt.imshow(img2,cmap='gray')
+    plt.title('Reconstructed Image 2')
     plt.savefig('image2_%s.png'%p)
     plt.show()
 
