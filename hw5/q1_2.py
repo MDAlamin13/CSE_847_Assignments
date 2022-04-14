@@ -79,10 +79,7 @@ assignments=kmeans(X,3,100)
 plot(assignments)
 
 sc=SpectralClustering(n_clusters=3).fit(X)
-SpectralClustering(affinity='rbf', assign_labels='kmeans', coef0=1, degree=3,
-                   eigen_solver=None, eigen_tol=0.0, gamma=1.0,
-                   kernel_params=None, n_clusters=3, n_components=None,
-                   n_init=10, n_jobs=None, n_neighbors=10, random_state=None)
+SpectralClustering(assign_labels='kmeans', n_clusters=3)
 labels = sc.labels_
 plt.scatter(X[:,0], X[:,1], c=labels)
 plt.savefig('q1_spectral.png')
